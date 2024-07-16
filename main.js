@@ -138,9 +138,7 @@
 //   // Change code above this line
 // }
 
-
 // findLongestWord("The quick brown fox jumped over the lazy dog");
-
 
 /**
   |============================
@@ -261,7 +259,6 @@
 // );
 // console.log(average); // Масив об'єктів з іменами Полі і Х'юстон
 
-
 //!----------------------------------------------------------------
 //* map and flatMap methods
 // const students = [
@@ -275,7 +272,6 @@
 
 // const mapFlatArr = students.flatMap(student => student.courses);
 // console.log(mapFlatArr); // ['математика', 'фізика', 'інформатика', 'математика', 'фізика', 'біологія'];
-
 
 //!----------------------------------------------------------------
 //* flatMap and filter methods
@@ -291,7 +287,6 @@
 //   (course, index, array) => array.indexOf(course) === index
 // );
 // console.log(uniqueCourses);
-
 
 //!----------------------------------------------------------------
 //* reduce method
@@ -336,12 +331,12 @@
 
 //!----------------------------------------------------------------
 //* sort method
-const students = [
-  { name: "Манго", score: 83 },
-  { name: "Полі", score: 59 },
-  { name: "Аякс", score: 37 },
-  { name: "Ківі", score: 94 },
-];
+// const students = [
+//   { name: "Манго", score: 83 },
+//   { name: "Полі", score: 59 },
+//   { name: "Аякс", score: 37 },
+//   { name: "Ківі", score: 94 },
+// ];
 
 // const inAscendingScoreOrder = students.sort(
 //   (firstStudent, secondStudent) => firstStudent.score - secondStudent.score
@@ -362,3 +357,263 @@ const students = [
 //   secondStudent.name.localeCompare(firstStudent.name)
 // );
 // console.log(inReverseAlphabeticalOrder);
+
+//!----------------------------------------------------------------
+// //* apply method of function
+// function minOfArray(arr) {
+//   let min = Infinity;
+//   console.log(min);
+//   const QUANTUM = 32768;
+
+//   for (let i = 0; i < arr.length; i += QUANTUM) {
+//     const value = arr.slice(i, Math.min(i + QUANTUM, arr.length));
+//     const submin = Math.min.apply(
+//       null,
+//       arr.slice(i, Math.min(i + QUANTUM, arr.length))
+//     );
+//     console.log(submin);
+
+//     min = Math.min(submin, min);
+//   }
+//   return min;
+// }
+
+// const min = minOfArray([5, 6, 2, 3, 7]);
+// console.log(min);
+
+//!----------------------------------------------------------------
+
+// const pizzaPalace = {
+//   pizzas: ["Ultracheese", "Smoked", "Four meats"],
+//   order(pizzaName, onSuccess, onError) {
+//     if (!this.pizzas.includes(pizzaName)) {
+//       return onError(
+//         `There is no pizza with a name ${pizzaName} in the assortment.`
+//       );
+//     } else {
+//       return onSuccess(`${pizzaName}`);
+//     }
+//   },
+// };
+
+// function makePizza(pizzaName) {
+//   return `Your order is accepted. Cooking pizza ${pizzaName}.`;
+// }
+
+// function onOrderError(error) {
+//   return `Error! ${error}`;
+// }
+
+// console.log(pizzaPalace.order("Four cheese", makePizza, onOrderError));
+
+//!----------------------------------------------------------------
+
+// const changeEven = (numbers, value) => {
+//   // Change code below this line
+//   let newArr = [];
+//   numbers.forEach((number) => {
+//     if (number % 2 === 0) {
+//       newArr.push(number + value);
+//     } else {
+//       newArr.push(number);
+//     }
+//   });
+//   return newArr;
+//   // Change code above this line
+// };
+
+// console.log(changeEven([1, 2, 3, 4, 5], 10));
+
+//!----------------------------------------------------------------
+
+const users = [
+  {
+    name: "Moore Hensley",
+    email: "moorehensley@indexia.com",
+    eyeColor: "blue",
+    friends: ["Sharron Pace"],
+    isActive: false,
+    balance: 2811,
+    gender: "male",
+    age: 37,
+  },
+  {
+    name: "Sharlene Bush",
+    email: "sharlenebush@tubesys.com",
+    eyeColor: "blue",
+    friends: ["Briana Decker", "Sharron Pace"],
+    isActive: true,
+    balance: 3821,
+    gender: "female",
+    age: 34,
+  },
+  {
+    name: "Ross Vazquez",
+    email: "rossvazquez@xinware.com",
+    eyeColor: "green",
+    friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
+    isActive: false,
+    balance: 3793,
+    gender: "male",
+    age: 24,
+  },
+  {
+    name: "Elma Head",
+    email: "elmahead@omatom.com",
+    eyeColor: "green",
+    friends: ["Goldie Gentry", "Aisha Tran"],
+    isActive: true,
+    balance: 2278,
+    gender: "female",
+    age: 21,
+  },
+  {
+    name: "Carey Barr",
+    email: "careybarr@nurali.com",
+    eyeColor: "blue",
+    friends: ["Jordan Sampson", "Eddie Strong"],
+    isActive: true,
+    balance: 3951,
+    gender: "male",
+    age: 27,
+  },
+  {
+    name: "Blackburn Dotson",
+    email: "blackburndotson@furnigeer.com",
+    eyeColor: "brown",
+    friends: ["Jacklyn Lucas", "Linda Chapman"],
+    isActive: false,
+    balance: 1498,
+    gender: "male",
+    age: 38,
+  },
+  {
+    name: "Sheree Anthony",
+    email: "shereeanthony@kog.com",
+    eyeColor: "brown",
+    friends: ["Goldie Gentry", "Briana Decker"],
+    isActive: true,
+    balance: 2764,
+    gender: "female",
+    age: 39,
+  },
+];
+// const getUsersWithAge = (users, minAge, maxAge) => {
+//   return users.filter((user) => minAge <= user.age <= maxAge);
+// };
+// console.log(getUsersWithAge(users, 20, 30));
+
+// Change code below this line
+// const getUsersWithFriend = (users, friendName) => {
+//   return users.filter(({ friends }) => friends.includes(friendName));
+// };
+// // Change code above this line
+
+// console.log(getUsersWithFriend(users, "Briana Decker"));
+
+// // Change code below this line
+// const getFriends = (users) => {
+//   return users
+//     .flatMap(({ friends }) => friends)
+//     .filter((friend, index, array) => array.indexOf(friend) === index);
+// };
+// // Change code above this line
+// console.log(getFriends(users));
+
+//!----------------------------------------------------------------
+
+// const players = [
+//   { name: "Mango", playtime: 1270, gamesPlayed: 4 },
+//   { name: "Poly", playtime: 469, gamesPlayed: 2 },
+//   { name: "Ajax", playtime: 690, gamesPlayed: 3 },
+//   { name: "Kiwi", playtime: 241, gamesPlayed: 1 },
+// ];
+// // Change code below this line
+// const totalAveragePlaytimePerGame = players.reduce((acc, player) => {
+//   return acc + player.playtime / player.gamesPlayed;
+// }, 0);
+
+// console.log(totalAveragePlaytimePerGame);
+
+// // Change code below this line
+// const getTotalFriendCount = (users) => {
+//   return users.reduce((acc, user) => acc + user.friends.length, 0);
+// };
+// // Change code above this line
+
+// console.log(getTotalFriendCount(users));
+
+//!----------------------------------------------------------------
+//* this in Global Window
+// function foo() {
+//   console.log(this);
+// }
+
+// foo(); // window без "use strict" і undefined з "use strict"
+
+//* this in object
+
+// const petya = {
+//   username: "Petya",
+//   showThis() {
+//     console.log(this);
+//   },
+//   showName() {
+//     console.log(this.username);
+//   },
+// };
+
+// petya.showThis(); // {username: "Petya", showThis: ƒ, showName: ƒ}
+// petya.showName(); // 'Petya'
+
+//* this in arrow function links to global window
+
+// const showThis = () => {
+//   console.log("this in showThis: ", this);
+// };
+
+// showThis(); // this in showThis: window
+
+// const user = {
+//   username: "Mango",
+//   showContext() {
+//     const foo = () => {
+//       // console.log("this in showContext: ", this);
+//     };
+//     console.log("this in showContext: ", this);
+//   },
+// };
+
+// user.showContext(); // this in showThis: window
+
+//* this in arrow function with bind method
+
+// const customer = {
+//   firstName: "Jacob",
+//   lastName: "Mercer",
+//   getFullName() {
+//     return `${this.firstName} ${this.lastName}`;
+//   },
+// };
+
+// function makeMessage(callback) {
+//   // callback() - це виклик методу getFullName без об'єкта
+//   console.log(`Обробляємо заявку від ${callback()}.`);
+// }
+
+// makeMessage(customer.getFullName); // Виникне помилка на момент виклику функції
+// makeMessage(customer.getFullName.bind(customer)); // Обробляємо заявку від Jacob Mercer.
+
+var f = function () {
+  console.log(1);
+};
+
+var execute = function (f) {
+  setTimeout(f, 1000);
+};
+
+execute(f); // что выведет в консоль и почему
+
+f = function () {
+  console.log(2);
+};
