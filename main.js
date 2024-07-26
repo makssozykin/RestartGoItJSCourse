@@ -604,16 +604,297 @@ const users = [
 // makeMessage(customer.getFullName); // Виникне помилка на момент виклику функції
 // makeMessage(customer.getFullName.bind(customer)); // Обробляємо заявку від Jacob Mercer.
 
-var f = function () {
-  console.log(1);
+// var f = function () {
+//   console.log(1);
+// };
+
+// var execute = function (f) {
+//   setTimeout(f, 1000);
+// };
+
+// execute(f); // что выведет в консоль и почему
+
+// f = function () {
+//   console.log(2);
+// };
+
+// const input = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15];
+
+// function countPositivesSumNegatives(input) {
+//   let newArr = [];
+//   let sumpos = input.filter((i) => i >= 0).reduce((acc, i) => acc + i, 0);
+//   console.log(sumpos);
+//   let sumneg = input.filter((i) => i < 0).reduce((acc, i) => acc + i, 0);
+//   console.log(sumneg);
+//   newArr.push(sumpos, sumneg);
+//   return newArr;
+// }
+
+// console.log(
+//   countPositivesSumNegatives([
+//     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15,
+//   ])
+// );
+
+// function invert(array) {
+//   const newArr = array.map((elem) => (elem === 0 ? 0 : -elem));
+//   console.log(newArr);
+// }
+
+// invert([0]);
+
+// function digitize(n) {
+//   //code here
+//   return Array.from(String(n))
+//     .reverse()
+//     .map((elem) => Number(elem));
+//   // .toString()
+//   // .split("")
+//   // .map((elem) => Number(elem))
+//   // .reverse();
+// }
+
+// console.log(digitize(32521)); // [1, 2, 3, 4, 5]
+
+// function getGrade(s1, s2, s3) {
+//   // Code here
+//   const score = (s1 + s2 + s3) / 3;
+
+//   if (score >= 0 && score < 60) {
+//     return "F";
+//   } else if (score >= 60 && score < 70) {
+//     return "D";
+//   } else if (score >= 70 && score < 80) {
+//     return "C";
+//   } else if (score >= 80 && score < 90) {
+//     return "B";
+//   } else if (score >= 90 && score <= 100) {
+//     return "A";
+//   }
+// }
+
+// function getGrade(s1, s2, s3) {
+//   // Code here
+//   const score = (s1 + s2 + s3) / 3;
+
+//   switch (score) {
+//     case score < 60:
+//       return "F";
+//       break;
+//     case score < 70:
+//       return "D";
+//       break;
+//     case score < 80:
+//       return "C";
+//       break;
+//     case score < 90:
+//       return "B";
+//       break;
+//     case score <= 100:
+//       return "A";
+//       break;
+//   }
+// }
+
+// console.log(getGrade(85, 92, 88)); // "B"
+
+// function past(h, m, s) {
+//   //#Happy Coding! ^_^
+//   const Hours = h * 60 * 60 * 1000;
+//   const Minutes = m * 60 * 1000;
+//   const Seconds = s * 1000;
+//   const totalTime = Hours + Minutes + Seconds;
+//   return totalTime;
+// }
+
+// console.log(past(0, 1, 1)); // "It's 01:02:03"
+
+// function DNAtoRNA(dna) {
+//   // create a function which returns an RNA sequence from the given DNA sequence
+//   return dna
+//     .split("")
+//     .map((elem) => (elem === "T" ? "U" : elem))
+//     .join("");
+// }
+
+// console.log(DNAtoRNA("ATCG")); // "AUCG"
+
+// var summation = function (num) {
+//   // Code here
+//   let sum = 0;
+//   for (let i = 0; i <= num; i++) {
+//     sum += i;
+//   }
+//   return sum;
+// };
+
+// const summation = (n) => (n * (n + 1)) / 2;
+
+// console.log(summation(8)); // 36
+
+// var countSheep = function (num) {
+//   //your code here
+//   let result = "";
+//   for (let i = 1; i <= num; i++) {
+//     if (num === 0) {
+//       return "";
+//     }
+//     result += `${i} sheep...`;
+//   }
+//   return result;
+// };
+// console.log(countSheep(10));
+
+// function isIsogram(str) {
+//   return str
+//     .toLowerCase()
+//     .split("")
+//     .every((elem, index, array) => array.indexOf(elem) === index);
+// }
+
+// function isIsogram(str) {
+//   return new Set(str.toUpperCase()).size === str.length;
+// }
+
+// console.log(isIsogram("aba")); // true
+
+// function dnaStrand(dna) {
+//   const arr = dna.split("");
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] === "A") {
+//       arr[i] = "T";
+//     } else if (arr[i] === "T") {
+//       arr[i] = "A";
+//     } else if (arr[i] === "C") {
+//       arr[i] = "G";
+//     } else if (arr[i] === "G") {
+//       arr[i] = "C";
+//     }
+//   }
+//   return arr.join("");
+// }
+
+// function DNAStrand(dna) {
+//   return dna
+//     .split("")
+//     .map((elem) => {
+//       return { A: "T", T: "A", C: "G", G: "C" }[elem];
+//     })
+//     .join("");
+// }
+
+// console.log(DNAStrand("ATTGC")); // "TAACG"
+
+// function longest(s1, s2) {
+//   return s1
+//     .split("")
+//     .concat(s2.split(""))
+//     .sort((a, b) => a.localeCompare(b))
+//     .filter((elem, index, arr) => arr.indexOf(elem) === index)
+//     .join("");
+// }
+
+// console.log(longest("loopingisfunbutdangerous", "lessdangerousthancoding"));
+// "abcdefghilnoprstu"
+
+// function removeChar(str) {
+//   //You got this!
+//   const arr = str.split("");
+//   const newArr = arr.slice(1, arr.length - 1);
+//   return newArr.join("");
+// }
+
+// console.log(removeChar("eloquent")); // "loquen"
+
+// function simpleMultiplication(number) {
+//   // your code........
+//   return number % 2 === 0 ? number * 8 : number * 9;
+// }
+
+// console.log(simpleMultiplication(9)); // 81
+
+// String.prototype.toJadenCase = function () {
+//   return this.toLowerCase()
+//     .split(" ")
+//     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+//     .join(" ");
+// };
+
+// console.log("How can mirrors be real if our eyes aren't real".toJadenCase()); // "How Can Mirrors Be Real If Our Eyes Aren't Real"
+
+// function highAndLow(numbers) {
+//   const newArr = [];
+//   const arr = numbers
+//     .split(" ")
+//     .map((number) => Number(number))
+//     .sort((a, b) => b - a);
+//   newArr.push(Math.max(...arr), Math.min(...arr));
+//   return newArr.join(" ");
+// }
+
+// function highAndLow(numbers) {
+//   numbers = numbers.split(" ");
+//   return `${Math.max(...numbers)} ${Math.min(...numbers)}`;
+// }
+
+// console.log(highAndLow("42")); // "42 -9"
+
+// function findAverage(array) {
+//   // your code here
+//   return array.length > 0
+//     ? array.reduce((acc, elem) => acc + elem, 0) / array.length
+//     : 0;
+// }
+
+// console.log(findAverage([1, 2, 3, 4, 5])); // 3
+
+// const greet = () => `${hello()} ${world()}${symbol()}`;
+
+// const hello = () => {
+//   const word = "olleh";
+//   return word.split("").reverse().join("");
+// };
+
+// const world = () => {
+//   const word = "WoRlD";
+//   return word.split("").join("").toLowerCase();
+// };
+
+// const symbol = () => {
+//   return hello() && world() ? "!" : "?";
+// };
+
+// console.log(greet());
+
+// function smash(words) {
+//   return words.join(" ");
+// }
+
+// console.log(smash([])); // 'hello world'
+
+// function repeatStr(n, s) {
+//   let returnStr = "";
+//   for (let i = 1; i <= n; i++) {
+//     returnStr += `${s}`;
+//   }
+//   return returnStr;
+// }
+
+// console.log(repeatStr(5, "I")); // "IIIIII"
+
+// const reverseSeq = (n) => {
+//   if (n > 0) {
+//     return [n].concat(reverseSeq(n - 1)); // recursive call to reverse the sequence
+//   }
+//   return [];
+// };
+
+const reverseSeq = (n) => {
+  let arr = [];
+  for (let i = n; i > 0; i--) {
+    arr.push(i);
+  }
+  return arr;
 };
 
-var execute = function (f) {
-  setTimeout(f, 1000);
-};
-
-execute(f); // что выведет в консоль и почему
-
-f = function () {
-  console.log(2);
-};
+console.log(reverseSeq(6)); // [5, 4, 3, 2, 1]
