@@ -7,13 +7,56 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="overlay" id="overlay"></div>
-    <div class="modal-window theme" id="modalWindow">
-      <p>this is modal</p>
-      <button class="close-btn" id="modalCloseBtn">close</button>
+    <div class="container">
+      <h2 class="title">Калькулятор підрахунку</h2>
+      <form action="#" class="form" id="form">
+        <label for="price">Ціна грн</label>
+        <input type="number" id="price" name="price" value="50" />
+        <label for="quantity"
+          >Кількість<span class="amount" id="amount">1</span>кг</label
+        >
+        <input
+          type="range"
+          id="quantity"
+          name="quantity"
+          value="1"
+          min="1"
+          max="20"
+        />
+      </form>
+      <p class="total" id="total"></p>
     </div>
 
-    <button class="open-modal-btn theme" id="openModalBtn">Open modal</button>
+    <div class="calc">
+      <div class="display">
+        <span class="number" maxlength="11">0</span>
+      </div>
+      <div class="btn-list">
+        <div class="btn-item first-btn-list">
+          <span class="button">C</span>
+          <span class="button">/</span>
+          <span class="button">*</span>
+        </div>
+        <div class="btn-item second-btn-list">
+          <span class="button">1</span>
+          <span class="button">2</span>
+          <span class="button">3</span>
+          <span class="button">4</span>
+          <span class="button">5</span>
+          <span class="button">6</span>
+          <span class="button">7</span>
+          <span class="button">8</span>
+          <span class="button">9</span>
+          <span class="button">0</span>
+          <span class="button">.</span>
+        </div>
+        <div class="btn-item third-btn-list">
+          <span class="button">-</span>
+          <span class="button">+</span>
+          <span class="button">Enter</span>
+        </div>
+      </div>
+    </div>
 
     <script src="./main.js"></script>
   </body>

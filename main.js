@@ -899,31 +899,129 @@ const users = [
 
 // console.log(reverseSeq(6)); // [5, 4, 3, 2, 1]
 
+// const refs = {
+//   openModalBtn: document.getElementById("openModalBtn"),
+//   overlay: document.getElementById("overlay"),
+//   modalCloseBtn: document.getElementById("modalCloseBtn"),
+// };
+
+// const openClass = "open";
+
+// refs.openModalBtn.addEventListener("click", openModal);
+// refs.overlay.addEventListener("click", closeModal);
+// refs.modalCloseBtn.addEventListener("click", closeModal);
+
+// function openModal() {
+//   document.body.classList.add(openClass);
+//   window.addEventListener("keydown", closeOnEsc);
+// }
+
+// function closeModal() {
+//   document.body.classList.remove(openClass);
+//   window.removeEventListener("keydown", closeOnEsc);
+// }
+
+// function closeOnEsc(event) {
+//   if (event.key === "Escape") {
+//     console.log("Esc key pressed");
+//     closeModal();
+//   }
+// }
+
 const refs = {
-  openModalBtn: document.getElementById("openModalBtn"),
-  overlay: document.getElementById("overlay"),
-  modalCloseBtn: document.getElementById("modalCloseBtn"),
+  form: document.getElementById("form"),
+  amount: document.getElementById("amount"),
+  total: document.getElementById("total"),
 };
 
-const openClass = "open";
+refs.form.addEventListener("input", onInput);
 
-refs.openModalBtn.addEventListener("click", openModal);
-refs.overlay.addEventListener("click", closeModal);
-refs.modalCloseBtn.addEventListener("click", closeModal);
+const data = {
+  price: 0,
+  amount: 0,
+  getTotalPrice() {
+    return (this.price * this.amount).toFixed(2);
+  },
+};
 
-function openModal() {
-  document.body.classList.add(openClass);
-  window.addEventListener("keydown", closeOnEsc);
+fillData();
+setAmount();
+totalPrice();
+
+function onInput(e) {
+  if (e.target.name === "quantity") {
+    setAmount();
+  }
+  fillData();
+  totalPrice();
 }
 
-function closeModal() {
-  document.body.classList.remove(openClass);
-  window.removeEventListener("keydown", closeOnEsc);
+function fillData() {
+  data.amount = refs.form.elements.quantity.value;
+  data.price = refs.form.elements.price.value;
 }
 
-function closeOnEsc(event) {
-  if (event.key === "Escape") {
-    console.log("Esc key pressed");
-    closeModal();
+function totalPrice() {
+  refs.total.textContent = `${data.getTotalPrice()} грн`;
+}
+
+function setAmount() {
+  refs.amount.textContent = refs.form.elements.quantity.value;
+}
+
+const calcrefs = {
+  calc: document.querySelector(".calc"),
+  number: document.querySelector(".number"),
+  btn: document.querySelector(".button"),
+};
+fillZero();
+calcrefs.calc.addEventListener("click", onClick);
+
+function onClick({ target }) {
+  if (
+    (target.nodeName === "SPAN" && target.textContent === "0") ||
+    target.textContent === "1" ||
+    target.textContent === "2" ||
+    target.textContent === "3" ||
+    target.textContent === "4" ||
+    target.textContent === "5" ||
+    target.textContent === "6" ||
+    target.textContent === "7" ||
+    target.textContent === "8" ||
+    target.textContent === "9"
+  ) {
+    calcrefs.number.textContent =
+      calcrefs.number.textContent === "0"
+        ? target.textContent
+        : calcrefs.number.textContent + target.textContent;
+    cutText();
+  } else if (target.nodeName === "SPAN" && target.innerText === "C") {
+    calcrefs.number.textContent = "0";
+  } 
+}
+function fillZero() {
+  calcrefs.number.textContent = "0";
+  // if (
+  //   calcrefs.number.textContent.startsWith("0") &&
+  //   calcrefs.number.textContent.length > 1
+  // ) {
+  //   calcrefs.number.textContent = calcrefs.number.textContent.slice(1);
+  // }
+}
+function cutText() {
+  const arr = calcrefs.number.textContent.split("");
+  if (arr.length <= 11) {
+    return (calcrefs.number.textContent = arr.join(""));
+  } else {
+    console.log("Text is too long");
+  }
+}
+
+function cutFirstZero(string) {
+  const arr = string.split("");
+  if (arr[0] === "0") {
+    console.log((string = arr.slice(1).join("")));
+  } else {
+    return string;
   }
 }

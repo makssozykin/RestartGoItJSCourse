@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Calculator';
+    src: url('Calculator.eot');
+    src: url('Calculator.eot?#iefix') format('embedded-opentype'),
+        url('Calculator.woff2') format('woff2'),
+        url('Calculator.woff') format('woff'),
+        url('Calculator.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
