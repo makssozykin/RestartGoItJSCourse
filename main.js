@@ -927,3 +927,156 @@ const users = [
 //     closeModal();
 //   }
 // }
+// const makeGreeting = (guestName) => {
+//   if (guestName === "" || guestName === undefined) {
+//     return {
+//       success: false,
+//       message: "Guest name must not be empty",
+//     };
+//   }
+
+//   return {
+//     success: true,
+//     message: `Welcome ${guestName}`,
+//   };
+// };
+
+// const result = makeGreeting("Mango");
+
+// if (result.success) {
+//   console.log(result.message);
+// } else {
+//   console.error(result.message);
+// }
+
+// const makeGreeting = (guestName) => {
+//   if (guestName === "" || guestName === undefined) {
+//     return Promise.reject("Guest name must not be empty");
+//   }
+
+//   return Promise.resolve(`Welcome ${guestName}`);
+// };
+
+// makeGreeting("Mango")
+//   .then((greeting) => console.log(greeting))
+//   .catch((error) => console.error(error));
+
+const refs = {
+  form: document.querySelector(".js-search"),
+  container: document.querySelector(".js-form-container"),
+  addBtn: document.querySelector(".js-add"),
+  list: document.querySelector(".js-list"),
+};
+
+refs.addBtn.addEventListener("click", addField);
+refs.form.addEventListener("submit", hadleSearch);
+
+function addField() {
+  // додаємо додаткові інпути в форму
+  refs.container.insertAdjacentHTML(
+    "afterbegin",
+    '<input type="text" name="country" />'
+  );
+}
+
+async function hadleSearch(event) {
+  event.preventDefault();
+  const formData = new FormData(event.currentTarget);
+  const countries = formData
+    .getAll("country") // отримуємо масив значень інпутів по атрибуту name
+    .map((country) => country.trim()) // отримуэмо новий масив без пробілів у назві за допомого методів map та trim
+    .filter((country) => country); // методом filter змінюємо вихідний масив, залишаємо тільки заповнені дані інпутів.
+  try {
+    const capitals = await serviceCountry(countries);
+    const wheather = await serviceCapitals(capitals);
+    refs.list.innerHTML = createMarkup(wheather);
+  } catch (err) {
+    console.log("Catch Error:", err);
+  } finally {
+    event.target.reset();
+    refs.container.innerHTML = '<input type="text" name="country" />';
+  }
+}
+
+function createMarkup(arr) {
+  // створюємо розмітку
+  return arr
+    .map(
+      ({ temp_c, icon, text, name, country }) => `<li>
+  <img src="${icon}" alt="${text}">
+  <h2>${name}, ${country}</h2>
+  <p>Temperature: ${temp_c}°C</p>
+  <p>${text}</p>
+  </li>`
+    )
+    .join("");
+}
+
+async function serviceCountry(countries) {
+  // пошук столиць по назві країни
+  const BASE_URL = "https://restcountries.com/v3.1/name/";
+  const resp = countries.map(async (country) => {
+    const { data } = await axios(`${BASE_URL}${country}`);
+    return data[0].capital[0];
+  });
+  const arr = await Promise.allSettled(resp);
+  return arr
+    .filter(({ status }) => status === "fulfilled")
+    .map(({ value }) => value);
+}
+
+async function serviceCapitals(capitals) {
+  // пошук погоди по назві столиці
+  const BASE_URL = "http://api.weatherapi.com/v1";
+  const END_POINT = "/current.json";
+  const API_KEY = "b47048ce58074e729ec141844241709";
+  const resp = capitals.map(async (capital) => {
+    const { data } = await axios(
+      `${BASE_URL}${END_POINT}?key=${API_KEY}&q=${capital}`
+    );
+    return data;
+  });
+  const arr = await Promise.allSettled(resp);
+  return arr
+    .filter(({ status }) => status === "fulfilled")
+    .map(({ value: { location, current } }) => {
+      const {
+        temp_c,
+        condition: { icon, text },
+      } = current;
+      const { name, country } = location;
+      return { temp_c, icon, text, name, country };
+    });
+}
+
+// const countries = ["Ukraine", "Poland", "Canada", "France"];
+// const capitals = ["Kiev", "Warsaw", "Ottawa", "Paris"];
+
+//* Back to Top Button with Scroll Progress
+let calcScrollValue = () => {
+  let scrollProgress = document.getElementById("progress");
+  let progressValue = document.getElementById("progress-value");
+  let pos = document.documentElement.scrollTop;
+  console.log(pos);
+  let calcHeight =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+  console.log(calcHeight);
+  let scrollValue = Number(Math.round((pos * 100) / calcHeight));
+  console.log(scrollValue);
+  if (pos > 100) {
+    scrollProgress.style.display = "grid";
+  } else {
+    scrollProgress.style.display = "none";
+  }
+  scrollProgress.addEventListener("click", () => {
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+  scrollProgress.style.background = `conic-gradient(#03cc65 ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+};
+
+window.onscroll = calcScrollValue;
+window.onload = calcScrollValue;
